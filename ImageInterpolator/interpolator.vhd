@@ -31,6 +31,7 @@ use IEEE.math_real.all;
 
 entity interpolator is
     Port ( clk : in STD_LOGIC;
+			  calc : in STD_LOGIC;
 			  currentPixel : in  STD_LOGIC_VECTOR (15 downto 0):="0100000000000000";
            leftPixel : in  STD_LOGIC_VECTOR (15 downto 0):="0000000000000000";
            rightPixel : in  STD_LOGIC_VECTOR (15 downto 0):="0000000000000000";
@@ -43,20 +44,25 @@ end interpolator;
 architecture Behavioral of interpolator is
 signal pow2_16 : STD_LOGIC_VECTOR (16 downto 0) :=(16=>'1',others=>'0');
 signal pixel : STD_LOGIC_VECTOR(33 downto 0);
+signal calcPixel : TSD_LOGIC_VECTOR(15 downto 0) :=(others =>'0');
 begin
 process(clk,currentPixel,leftPixel,rightPixel,upperPixel,lowerPixel,K)
 variable temp : integer;
 begin
-	temp := 4*to_integer(unsigned(K))*to_integer(unsigned(currentPixel))
-			+ to_integer(unsigned(pow2_16 - K))*
-			  to_integer(unsigned(leftPixel + rightPixel + upperPixel + lowerPixel));
-			  
-	pixel <= std_logic_vector(to_unsigned(temp,34));
-	if(pixel(17)='1') then
-		outputPixel <= pixel(33 downto 18)+ '1';
+	outputPixel <= calcPixel;
+	if(calc = '1') then
+		temp := 4*to_integer(unsigned(K))*to_integer(unsigned(currentPixel))
+				+ to_integer(unsigned(pow2_16 - K))*
+				  to_integer(unsigned(leftPixel + rightPixel + upperPixel + lowerPixel));
+				  
+		pixel <= std_logic_vector(to_unsigned(temp,34));
+		if(pixel(17)='1') then
+			calcPixel <= pixel(33 downto 18)+ '1';
+		else
+			calcPixel <= pixel(33 downto 18);
+		end if;
 	else
-		outputPixel <= pixel(33 downto 18);
+		calcPixel <= (others=>'0');
 	end if;
 end process;
 end Behavioral;
-
