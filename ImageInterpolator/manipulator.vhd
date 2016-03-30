@@ -64,7 +64,7 @@ begin
 			pixels <= (others =>'0');
 		end if;
 		
-		--indexing
+		-- indexing
 		
 		i_t := to_integer(unsigned(i));
 		j_t := to_integer(unsigned(j));
