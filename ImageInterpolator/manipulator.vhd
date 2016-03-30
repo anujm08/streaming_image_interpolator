@@ -33,16 +33,15 @@ use IEEE.NUMERIC_STD.ALL;
 entity manipulator is
     Port ( clk : in STD_LOGIC;
 			  inpixel : in  STD_LOGIC_VECTOR (15 downto 0);
+           reset : in  STD_LOGIC;
+           load : in  STD_LOGIC;			  
 			  i : in  STD_LOGIC_VECTOR (0 downto 0);
            j : in  STD_LOGIC_VECTOR (0 downto 0);
-           reset : in  STD_LOGIC;
-           load : in  STD_LOGIC;
-           centralpixel : out  STD_LOGIC_VECTOR (15 downto 0);
-           leftpixel : out  STD_LOGIC_VECTOR (15 downto 0);
-           rightpixel : out  STD_LOGIC_VECTOR (15 downto 0);
-           upperpixel : out  STD_LOGIC_VECTOR (15 downto 0);
-           lowerpixel : out  STD_LOGIC_VECTOR (15 downto 0));
-           
+           centralPixel : out  STD_LOGIC_VECTOR (15 downto 0);
+           leftPixel : out  STD_LOGIC_VECTOR (15 downto 0);
+           rightPixel : out  STD_LOGIC_VECTOR (15 downto 0);
+           upperPixel : out  STD_LOGIC_VECTOR (15 downto 0);
+           lowerPixel : out  STD_LOGIC_VECTOR (15 downto 0));
 end manipulator;
 
 architecture Behavioral of manipulator is
@@ -83,19 +82,19 @@ begin
 		
 		-- assigning output pixels
 		
-		centralpixel <= pixels(k_c+15 downto k_c);
-		upperpixel <= pixels(k_u+15 downto k_u);
-		lowerpixel <= pixels(k_d+15 downto k_d);
+		centralPixel <= pixels(k_c+15 downto k_c);
+		upperPixel <= pixels(k_u+15 downto k_u);
+		lowerPixel <= pixels(k_d+15 downto k_d);
 		if(j_t = 0) then
-			leftpixel <= (others=>'0');
+			leftPixel <= (others=>'0');
 		else
-			leftpixel <= pixels(k_c-1 downto k_c-16);
+			leftPixel <= pixels(k_c-1 downto k_c-16);
 		end if;
 		
 		if(j_t = 99) then
-			rightpixel <= (others=>'0');
+			rightPixel <= (others=>'0');
 		else
-			rightpixel <= pixels(k_c+31 downto k_c+16);
+			rightPixel <= pixels(k_c+31 downto k_c+16);
 		end if;
 
 	end if;
