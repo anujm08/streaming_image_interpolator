@@ -44,7 +44,7 @@ end interpolator;
 architecture Behavioral of interpolator is
 signal pow2_16 : STD_LOGIC_VECTOR (16 downto 0) :=(16=>'1',others=>'0');
 signal pixel : STD_LOGIC_VECTOR(33 downto 0);
-signal calcPixel : TSD_LOGIC_VECTOR(15 downto 0) :=(others =>'0');
+signal calcPixel : STD_LOGIC_VECTOR(15 downto 0) :=(others =>'0');
 begin
 process(clk,currentPixel,leftPixel,rightPixel,upperPixel,lowerPixel,K)
 variable temp : integer;
