@@ -32,6 +32,9 @@
     <file xil_pn:fileType="FILE_XST" xil_pn:name="interpolator.xst"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="interpolator_isim_beh.exe"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="interpolator_stx_beh.prj"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="interpolator_top.prj"/>
+    <file xil_pn:fileType="FILE_XST_STX" xil_pn:name="interpolator_top.stx"/>
+    <file xil_pn:fileType="FILE_XST" xil_pn:name="interpolator_top.xst"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="loadConst.prj"/>
@@ -76,6 +79,7 @@
     <transform xil_pn:end_ts="1458668722" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="-3692352319154648811" xil_pn:start_ts="1458668722">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForProperties"/>
     </transform>
     <transform xil_pn:end_ts="1458670199" xil_pn:in_ck="3081023613352149890" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1458670199">
       <status xil_pn:value="SuccessfullyRun"/>

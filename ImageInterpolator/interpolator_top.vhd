@@ -76,12 +76,12 @@ END COMPONENT;
 COMPONENT interpolator is
     Port ( clk : in STD_LOGIC;
 			  calc : in STD_LOGIC;
-			  centralPixel : in  STD_LOGIC_VECTOR (15 downto 0):="0100000000000000";
-           leftPixel : in  STD_LOGIC_VECTOR (15 downto 0):="0000000000000000";
-           rightPixel : in  STD_LOGIC_VECTOR (15 downto 0):="0000000000000000";
-           upperPixel : in  STD_LOGIC_VECTOR (15 downto 0):="0000000000000000";
-           lowerPixel : in  STD_LOGIC_VECTOR (15 downto 0):="0000000000000000";
-           K : in  STD_LOGIC_VECTOR (15 downto 0):="1111111111111111";
+			  centralPixel : in  STD_LOGIC_VECTOR (15 downto 0);
+           leftPixel : in  STD_LOGIC_VECTOR (15 downto 0);
+           rightPixel : in  STD_LOGIC_VECTOR (15 downto 0);
+           upperPixel : in  STD_LOGIC_VECTOR (15 downto 0);
+           lowerPixel : in  STD_LOGIC_VECTOR (15 downto 0);
+           K : in  STD_LOGIC_VECTOR (15 downto 0);
            outputPixel : out  STD_LOGIC_VECTOR (15 downto 0));
 END COMPONENT;
 
@@ -236,7 +236,7 @@ BlueInterpolator : interpolator
 		outputPixel => outBPixel
 	);
 	
-LoadABC : LoadConst
+LoadConstABC : LoadConst
 	PORT MAP(
 		clk => clk,
 		loadABC => loadABC,
