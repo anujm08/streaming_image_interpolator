@@ -45,27 +45,28 @@ architecture Behavioral of interpolator is
 
 signal pow2_16 : STD_LOGIC_VECTOR (16 downto 0) :=(16=>'1',others=>'0');
 signal pixel : STD_LOGIC_VECTOR(33 downto 0);
-signal calcPixel : STD_LOGIC_VECTOR(15 downto 0) :=(others =>'0');
+--signal calcPixel : STD_LOGIC_VECTOR(15 downto 0) :=(others =>'0');
 
 begin
 
-process(clk,centralPixel,leftPixel,rightPixel,upperPixel,lowerPixel,K)
-variable temp : integer;
+process(clk)
+variable temp : integer range 33 downto 0;
 begin
-	outputPixel <= calcPixel;
-	if(calc = '1') then
-		temp := 4*to_integer(unsigned(K))*to_integer(unsigned(centralPixel))
-				+ to_integer(unsigned(pow2_16 - K))*
-				  to_integer(unsigned(leftPixel + rightPixel + upperPixel + lowerPixel));
-				  
-		pixel <= std_logic_vector(to_unsigned(temp,34));
-		if(pixel(17)='1') then
-			calcPixel <= pixel(33 downto 18)+ '1';
+	if(clk'event and clk = '1') then
+		if(calc = '1') then
+			temp := 4*to_integer(unsigned(K))*to_integer(unsigned(centralPixel))
+					+ to_integer(unsigned(pow2_16 - K))*
+					  to_integer(unsigned(leftPixel + rightPixel + upperPixel + lowerPixel));
+			pixel <= std_logic_vector(to_unsigned(temp,34));
+			temp :=to_integer(to_unsigned(temp,34)/(4*unsigned(pow2_16)));
+			if(pixel(16)='1') then
+				outputPixel <= std_logic_vector(to_unsigned(temp,16))+ '1';
+			else
+				outputPixel <= std_logic_vector(to_unsigned(temp,16));
+			end if;
 		else
-			calcPixel <= pixel(33 downto 18);
+			outputPixel <= (others=>'0');
 		end if;
-	else
-		calcPixel <= (others=>'0');
 	end if;
 end process;
 end Behavioral;

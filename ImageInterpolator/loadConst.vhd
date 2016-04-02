@@ -45,7 +45,7 @@ architecture Behavioral of loadConst is
 begin
 process(clk,loadABC)
 begin
-	if (loadABC = '1') then
+	if (clk'event and clk='1' and loadABC = '1') then
 		A <= Ain;
 		B <= Bin;
 		C <= Cin;

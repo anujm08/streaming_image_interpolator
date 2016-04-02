@@ -64,8 +64,8 @@ COMPONENT manipulator is
 			  reset : in  STD_LOGIC;
            load : in  STD_LOGIC;
 			  inpixel : in  STD_LOGIC_VECTOR (15 downto 0);
-			  i : in  STD_LOGIC_VECTOR (0 downto 0);
-           j : in  STD_LOGIC_VECTOR (0 downto 0);
+			  i : in  STD_LOGIC_VECTOR (6 downto 0);
+           j : in  STD_LOGIC_VECTOR (6 downto 0);
            centralPixel : out  STD_LOGIC_VECTOR (15 downto 0);
            leftPixel : out  STD_LOGIC_VECTOR (15 downto 0);
            rightPixel : out  STD_LOGIC_VECTOR (15 downto 0);
@@ -98,6 +98,7 @@ END COMPONENT;
 
 COMPONENT UpdateIndex is
     Port ( clk : in STD_LOGIC;
+			  reset : in STD_LOGIC;
 			  update : in STD_LOGIC;
 			  i : inout  STD_LOGIC_VECTOR (6 downto 0);
            j : inout  STD_LOGIC_VECTOR (6 downto 0));
@@ -219,7 +220,7 @@ GreenInterpolator : interpolator
 		rightPixel => G_r,
 		upperPixel => G_u,
 		lowerPixel => G_d,
-		K => A,
+		K => B,
 		outputPixel => outGPixel
 	);
 	
@@ -232,7 +233,7 @@ BlueInterpolator : interpolator
 		rightPixel => B_r,
 		upperPixel => B_u,
 		lowerPixel => B_d,
-		K => A,
+		K => C,
 		outputPixel => outBPixel
 	);
 	
@@ -251,6 +252,7 @@ LoadConstABC : LoadConst
 Updateij : UpdateIndex
 	PORT MAP(
 		clk => clk,
+		reset => reset,
 		update => update,
 		i => i,
 		j => j

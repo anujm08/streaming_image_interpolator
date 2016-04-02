@@ -19,10 +19,10 @@
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx primitives in this code.
@@ -30,6 +30,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity controller is
+	 Generic ( N: integer range 6 downto 0 := 4);
     Port ( clk : in  STD_LOGIC;
            reset : in  STD_LOGIC;
            start : in  STD_LOGIC;
@@ -38,15 +39,16 @@ entity controller is
            --comp3 : in  STD_LOGIC;
 			  i : in STD_LOGIC_VECTOR(6 downto 0);
 			  j : in STD_LOGIC_VECTOR(6 downto 0);
-   		  loadABC : out STD_LOGIC;
-           load : out  STD_LOGIC;
-           update : out  STD_LOGIC;
-           calc : out  STD_LOGIC;
-           outputReady : out  STD_LOGIC);
+   		  loadABC : out STD_LOGIC:='0';
+           load : out  STD_LOGIC:='0';
+           update : out  STD_LOGIC:='0';
+           calc : out  STD_LOGIC:='0';
+           outputReady : out  STD_LOGIC:='0');
 end controller;
 
 architecture Behavioral of controller is
 signal state : STD_LOGIC_VECTOR(3 downto 0):="1111";
+signal size : STD_LOGIC_VECTOR(6 downto 0) := std_logic_vector(to_unsigned(N-1,7));
 begin
 process(clk)
 begin
@@ -84,13 +86,13 @@ begin
 				state <= "0110";
 				outputReady <= '1';
 			when "0110" =>
-				if(i="11000011" and j = "0000000") then
+				if(i=size and j = "0000000") then
 				--if(comp2='1') then -- i=99 and j=0
 					state <= "0111";
 					load <= '0';
 				end if;
 			when "0111" =>
-				if(i>"11000101") then
+				if(i>size + 2) then
 				--if(comp2='1') then -- i>101
 					state <= "1000";
 					calc <= '0';
@@ -104,9 +106,10 @@ begin
 				calc <='0';
 				update <= '0';
 				outputReady <= '0';
-				if(reset = '0') then
+				if(reset = '1') then
 					state <= "0000";
 				end if;
+			when others =>
 		end case;
 	end if;		
 end process;

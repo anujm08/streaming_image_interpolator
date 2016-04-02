@@ -31,21 +31,24 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity manipulator is
+	 Generic (
+			  N : integer range 6 downto 0:= 4);
     Port ( clk : in STD_LOGIC;
 			  inpixel : in  STD_LOGIC_VECTOR (15 downto 0);
            reset : in  STD_LOGIC;
            load : in  STD_LOGIC;			  
-			  i : in  STD_LOGIC_VECTOR (0 downto 0);
-           j : in  STD_LOGIC_VECTOR (0 downto 0);
+			  i : in  STD_LOGIC_VECTOR (6 downto 0);
+           j : in  STD_LOGIC_VECTOR (6 downto 0);
            centralPixel : out  STD_LOGIC_VECTOR (15 downto 0);
            leftPixel : out  STD_LOGIC_VECTOR (15 downto 0);
            rightPixel : out  STD_LOGIC_VECTOR (15 downto 0);
            upperPixel : out  STD_LOGIC_VECTOR (15 downto 0);
-           lowerPixel : out  STD_LOGIC_VECTOR (15 downto 0));
+           lowerPixel : out  STD_LOGIC_VECTOR (15 downto 0)
+			  );
 end manipulator;
 
 architecture Behavioral of manipulator is
-signal pixels: STD_LOGIC_VECTOR(6399 downto 0) := (others => '0');
+signal pixels: STD_LOGIC_VECTOR(64*N-1 downto 0) := (others => '0');
 begin
 process(clk)
 variable k: integer:=0;
@@ -67,10 +70,10 @@ begin
 		
 		i_t := to_integer(unsigned(i));
 		j_t := to_integer(unsigned(j));
-		k := 16*((i_t mod 4)*100+j_t);
-		k_c := 16*(((i_t-2) mod 4)*100+j_t);
-		k_u := 16*(((i_t-3) mod 4)*100+j_t);
-		k_d := 16*(((i_t-1) mod 4)*100+j_t);
+		k := 16*((i_t mod 4)*N+j_t);
+		k_c := 16*(((i_t-2) mod 4)*N+j_t);
+		k_u := 16*(((i_t-3) mod 4)*N+j_t);
+		k_d := 16*(((i_t-1) mod 4)*N+j_t);
 		
 		-- loading input pixels
 		
@@ -91,7 +94,7 @@ begin
 			leftPixel <= pixels(k_c-1 downto k_c-16);
 		end if;
 		
-		if(j_t = 99) then
+		if(j_t = N-1) then
 			rightPixel <= (others=>'0');
 		else
 			rightPixel <= pixels(k_c+31 downto k_c+16);
