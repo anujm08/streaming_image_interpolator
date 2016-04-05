@@ -58,11 +58,12 @@ begin
 					+ to_integer(unsigned(pow2_16 - K))*
 					  to_integer(unsigned(leftPixel + rightPixel + upperPixel + lowerPixel));
 			pixel <= std_logic_vector(to_unsigned(temp,34));
-			temp :=to_integer(to_unsigned(temp,34)/(4*unsigned(pow2_16)));
-			if(pixel(16)='1') then
-				outputPixel <= std_logic_vector(to_unsigned(temp,16))+ '1';
-			else
+			if(temp mod (4*to_integer(unsigned(pow2_16))) < 2*to_integer(unsigned(pow2_16))) then
+				temp :=to_integer(to_unsigned(temp,34)/(4*unsigned(pow2_16)));
 				outputPixel <= std_logic_vector(to_unsigned(temp,16));
+			else
+				temp :=to_integer(to_unsigned(temp,34)/(4*unsigned(pow2_16)));
+				outputPixel <= std_logic_vector(to_unsigned(temp,16))+ '1';
 			end if;
 		else
 			outputPixel <= (others=>'0');

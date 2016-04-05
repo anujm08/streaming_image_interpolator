@@ -1,5 +1,5 @@
-N = 2
-BITS = 8
+N = 4
+BITS = 16
 
 # takes in two files as input
 # each line in both contains only bit characters (either '0' or '1'), followed by a '\n'
@@ -25,7 +25,7 @@ def fill_pixels(PIXELS, LINES):
 			increasing = not increasing
 			col += 1
 
-		elif row == 0 and not increasing :
+		elif row == 1 and not increasing :
 			increasing = not increasing
 			col += 1
 
@@ -60,20 +60,24 @@ def check_pixel(i, j, verbose):
 
 	status = True
 
+	
+
+	oR_expected = int(round((iR*R + (2**BITS - R)*(float(iRu + iRr + iRl + iRd)/4))/2**BITS))
+	oG_expected = int(round((iG*G + (2**BITS - G)*(float(iGu + iGr + iGl + iGd)/4))/2**BITS))
+	oB_expected = int(round((iB*B + (2**BITS - B)*(float(iBu + iBr + iBl + iBd)/4))/2**BITS))
+
+
 	if verbose:
 		print "R:", R, "G:", G, "B:", B
 		print "IN \tR:",iR, "G:", iG, "B:", iB
 		print "OUT \tR:",oR, "G:", oG, "B:", oB
+		print "EOUT \tR:",oR_expected, "G:", oG_expected, "B:", oB_expected
 		print ""
 		print "UP \tR:",iRu, "G:", iGu, "B:", iBu
 		print "DOWN  \tR:",iRd, "G:", iGd, "B:", iBd
 		print "LEFT  \tR:",iRl, "G:", iGl, "B:", iBl
 		print "RIGHT \tR:",iRr, "G:", iGr, "B:", iBr
 		print ""
-
-	oR_expected = round((iR*R + (2**BITS - R)*(float(iRu + iRr + iRl + iRd)/4))/2**BITS)
-	oG_expected = round((iG*G + (2**BITS - G)*(float(iGu + iGr + iGl + iGd)/4))/2**BITS)
-	oB_expected = round((iB*B + (2**BITS - B)*(float(iBu + iBr + iBl + iBd)/4))/2**BITS)
 
 	if oR_expected != oR:
 		if verbose:

@@ -36,10 +36,10 @@ entity interpolator_top is
            RPixel : in  STD_LOGIC_VECTOR (15 downto 0);
            GPixel : in  STD_LOGIC_VECTOR (15 downto 0);
            BPixel : in  STD_LOGIC_VECTOR (15 downto 0);
-           outRPixel : out  STD_LOGIC_VECTOR (15 downto 0);
-           outGPixel : out  STD_LOGIC_VECTOR (15 downto 0);
-           outBPixel : out  STD_LOGIC_VECTOR (15 downto 0);
-           outputReady : out  STD_LOGIC);
+           outRPixel : inout  STD_LOGIC_VECTOR (15 downto 0);
+           outGPixel : inout  STD_LOGIC_VECTOR (15 downto 0);
+           outBPixel : inout  STD_LOGIC_VECTOR (15 downto 0);
+           outputReady : inout  STD_LOGIC);
 end interpolator_top;
 
 architecture Behavioral of interpolator_top is
@@ -103,6 +103,17 @@ COMPONENT UpdateIndex is
 			  i : inout  STD_LOGIC_VECTOR (6 downto 0);
            j : inout  STD_LOGIC_VECTOR (6 downto 0));
 END COMPONENT;
+
+COMPONENT writer is
+	 GENERIC (
+			  out_file : string := "interpolated.txt"
+			  );
+    Port ( clk : in STD_LOGIC;
+			  outputReady : in  STD_LOGIC;
+           outputRPixel : in  STD_LOGIC_VECTOR (15 downto 0);
+           outputGPixel : in  STD_LOGIC_VECTOR (15 downto 0);
+           outputBPixel : in  STD_LOGIC_VECTOR (15 downto 0));
+end COMPONENT;
 
 signal loadABC :STD_LOGIC := '0';
 signal load : STD_LOGIC := '0';
@@ -257,5 +268,14 @@ Updateij : UpdateIndex
 		i => i,
 		j => j
 	);
-end Behavioral;
+	
+writeImage : writer
+	PORT MAP(
+		clk => clk,
+		outputReady => outputReady,
+		outputRPixel => outRPixel,
+		outputGPixel => outGPixel,
+		outputBPixel => outBPixel
+	);
 
+end Behavioral;
