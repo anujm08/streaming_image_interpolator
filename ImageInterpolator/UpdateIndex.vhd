@@ -30,17 +30,17 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity updateIndex is
-	 Generic (N : integer range 6 downto 0:=4);
+	 Generic (N : integer:=100);
     Port ( clk : in STD_LOGIC;
 			  reset : in STD_LOGIC;
 			  update : in STD_LOGIC;
-			  i : inout  STD_LOGIC_VECTOR (6 downto 0);
-           j : inout  STD_LOGIC_VECTOR (6 downto 0));
+			  i : inout  STD_LOGIC_VECTOR (7 downto 0);
+           j : inout  STD_LOGIC_VECTOR (7 downto 0));
 end updateIndex;
 
 architecture Behavioral of updateIndex is
 signal yinc : STD_LOGIC := '1';
-signal size : STD_LOGIC_VECTOR(6 downto 0) := std_logic_vector(to_unsigned(N-1,7));
+signal size : STD_LOGIC_VECTOR(7 downto 0) := std_logic_vector(to_unsigned(N-1,8));
 begin
 process(clk)
 begin

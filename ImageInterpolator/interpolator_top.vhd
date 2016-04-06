@@ -51,8 +51,8 @@ COMPONENT controller is
 			  --comp1 : in  STD_LOGIC;
            --comp2 : in  STD_LOGIC;
            --comp3 : in  STD_LOGIC;
-			  i : in STD_LOGIC_VECTOR(6 downto 0);
-			  j : in STD_LOGIC_VECTOR(6 downto 0);
+			  i : in STD_LOGIC_VECTOR(7 downto 0);
+			  j : in STD_LOGIC_VECTOR(7 downto 0);
    		  loadABC : out STD_LOGIC;
            load : out  STD_LOGIC;
            update : out  STD_LOGIC;
@@ -64,8 +64,8 @@ COMPONENT manipulator is
 			  reset : in  STD_LOGIC;
            load : in  STD_LOGIC;
 			  inpixel : in  STD_LOGIC_VECTOR (15 downto 0);
-			  i : in  STD_LOGIC_VECTOR (6 downto 0);
-           j : in  STD_LOGIC_VECTOR (6 downto 0);
+			  i : in  STD_LOGIC_VECTOR (7 downto 0);
+           j : in  STD_LOGIC_VECTOR (7 downto 0);
            centralPixel : out  STD_LOGIC_VECTOR (15 downto 0);
            leftPixel : out  STD_LOGIC_VECTOR (15 downto 0);
            rightPixel : out  STD_LOGIC_VECTOR (15 downto 0);
@@ -100,8 +100,8 @@ COMPONENT UpdateIndex is
     Port ( clk : in STD_LOGIC;
 			  reset : in STD_LOGIC;
 			  update : in STD_LOGIC;
-			  i : inout  STD_LOGIC_VECTOR (6 downto 0);
-           j : inout  STD_LOGIC_VECTOR (6 downto 0));
+			  i : inout  STD_LOGIC_VECTOR (7 downto 0);
+           j : inout  STD_LOGIC_VECTOR (7 downto 0));
 END COMPONENT;
 
 COMPONENT writer is
@@ -120,8 +120,8 @@ signal load : STD_LOGIC := '0';
 signal calc : STD_LOGIC := '0';
 signal update : STD_LOGIC := '0';
 
-signal i : STD_LOGIC_VECTOR(6 downto 0) := (others =>'0');
-signal j : STD_LOGIC_VECTOR(6 downto 0) := (others =>'0');
+signal i : STD_LOGIC_VECTOR(7 downto 0) := (others =>'0');
+signal j : STD_LOGIC_VECTOR(7 downto 0) := (others =>'0');
 
 signal A : STD_LOGIC_VECTOR(15 downto 0) := (others =>'0');
 signal B : STD_LOGIC_VECTOR(15 downto 0) := (others =>'0');

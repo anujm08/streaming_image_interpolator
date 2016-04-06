@@ -30,15 +30,15 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity controller is
-	 Generic ( N: integer range 6 downto 0 := 4);
+	 Generic ( N: integer:= 100);
     Port ( clk : in  STD_LOGIC;
            reset : in  STD_LOGIC;
            start : in  STD_LOGIC;
 			  --comp1 : in  STD_LOGIC;
            --comp2 : in  STD_LOGIC;
            --comp3 : in  STD_LOGIC;
-			  i : in STD_LOGIC_VECTOR(6 downto 0);
-			  j : in STD_LOGIC_VECTOR(6 downto 0);
+			  i : in STD_LOGIC_VECTOR(7 downto 0);
+			  j : in STD_LOGIC_VECTOR(7 downto 0);
    		  loadABC : out STD_LOGIC:='0';
            load : out  STD_LOGIC:='0';
            update : out  STD_LOGIC:='0';
@@ -48,7 +48,7 @@ end controller;
 
 architecture Behavioral of controller is
 signal state : STD_LOGIC_VECTOR(3 downto 0):="1111";
-signal size : STD_LOGIC_VECTOR(6 downto 0) := std_logic_vector(to_unsigned(N-1,7));
+signal size : STD_LOGIC_VECTOR(7 downto 0) := std_logic_vector(to_unsigned(N-1,8));
 begin
 process(clk)
 begin

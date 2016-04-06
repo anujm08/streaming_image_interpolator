@@ -44,6 +44,8 @@
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_REPORT" xil_pn:name="interpolator_top.syr"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST" xil_pn:name="interpolator_top.xst"/>
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="interpolator_top_envsettings.html"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="interpolator_top_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="interpolator_top_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="interpolator_top_summary.html"/>
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="interpolator_top_xst.xrpt"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
@@ -55,6 +57,7 @@
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="manipulator.prj"/>
     <file xil_pn:fileType="FILE_XST_STX" xil_pn:name="manipulator.stx"/>
     <file xil_pn:fileType="FILE_XST" xil_pn:name="manipulator.xst"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="manipulator_isim_beh.exe"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="test123_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="test2_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="test2_isim_beh.exe"/>
@@ -67,6 +70,8 @@
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="updateIndex.prj"/>
     <file xil_pn:fileType="FILE_XST_STX" xil_pn:name="updateIndex.stx"/>
     <file xil_pn:fileType="FILE_XST" xil_pn:name="updateIndex.xst"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="updateIndex_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="updateIndex_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="webtalk_pn.xml"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="writer.prj"/>
     <file xil_pn:fileType="FILE_XST_STX" xil_pn:name="writer.stx"/>
@@ -80,7 +85,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1459886890" xil_pn:in_ck="5222979482632789099" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1459886890">
+    <transform xil_pn:end_ts="1459933124" xil_pn:in_ck="5222979482632789099" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1459933124">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="UpdateIndex.vhd"/>
@@ -93,11 +98,11 @@
       <outfile xil_pn:name="test2.vhd"/>
       <outfile xil_pn:name="writer.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1459886175" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="1894980157015122696" xil_pn:start_ts="1459886175">
+    <transform xil_pn:end_ts="1459923495" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="1894980157015122696" xil_pn:start_ts="1459923495">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1459886175" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-9184886415400417402" xil_pn:start_ts="1459886175">
+    <transform xil_pn:end_ts="1459923495" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-9184886415400417402" xil_pn:start_ts="1459923495">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
@@ -105,7 +110,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1459886911" xil_pn:in_ck="5222979482632789099" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1459886911">
+    <transform xil_pn:end_ts="1459933124" xil_pn:in_ck="5222979482632789099" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1459933124">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="UpdateIndex.vhd"/>
@@ -118,7 +123,7 @@
       <outfile xil_pn:name="test2.vhd"/>
       <outfile xil_pn:name="writer.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1459886922" xil_pn:in_ck="5222979482632789099" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="197177469125385776" xil_pn:start_ts="1459886911">
+    <transform xil_pn:end_ts="1459933160" xil_pn:in_ck="5222979482632789099" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="197177469125385776" xil_pn:start_ts="1459933124">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
@@ -130,9 +135,11 @@
       <outfile xil_pn:name="test2_isim_beh.exe"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1459886923" xil_pn:in_ck="-7866781275278651260" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-566246330208228643" xil_pn:start_ts="1459886922">
+    <transform xil_pn:end_ts="1459933160" xil_pn:in_ck="7237478606374369485" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-566246330208228643" xil_pn:start_ts="1459933160">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="isim.cmd"/>
       <outfile xil_pn:name="isim.log"/>
       <outfile xil_pn:name="test2_isim_beh.wdb"/>

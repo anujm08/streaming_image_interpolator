@@ -1,10 +1,10 @@
-N = 4
-BITS = 16
+import sys
+N = 100
 
 # takes in two files as input
 # each line in both contains only bit characters (either '0' or '1'), followed by a '\n'
 # `input.in`
-# 	first 3 line contain the values of constants R, B, G respectively, each is 16 bits
+# 	first 3 line contain the values of constants R, G, B respectively, each is 16 BITS
 # 	next N*N lines contain pixel values (in RGB order) in the problem statement order
 # `output.in`
 # 	N*N lines containing the output of our program
@@ -17,23 +17,23 @@ def fill_pixels(PIXELS, LINES):
 	increasing = True
 
 	for i in range(N*N):
-		PIXELS[row][col]['R'] = int(LINES[i][0:BITS], 2)
-		PIXELS[row][col]['B'] = int(LINES[i][BITS:2*BITS], 2)
-		PIXELS[row][col]['G'] = int(LINES[i][2*BITS:3*BITS], 2)
+		PIXELS[row][col]['R'] = int(LINES[i][0:16], 2)
+		PIXELS[row][col]['G'] = int(LINES[i][16:32], 2)
+		PIXELS[row][col]['B'] = int(LINES[i][32:48], 2)
 
-		if row == N and increasing :
+		if col == N and increasing :
 			increasing = not increasing
-			col += 1
+			row += 1
 
-		elif row == 1 and not increasing :
+		elif col == 1 and not increasing :
 			increasing = not increasing
-			col += 1
+			row += 1
 
 		else :
 			if increasing:
-				row += 1
+				col += 1
 			else:
-				row -= 1
+				col -= 1
 
 def check_pixel(i, j, verbose):
 
@@ -62,9 +62,9 @@ def check_pixel(i, j, verbose):
 
 	
 
-	oR_expected = int(round((iR*R + (2**BITS - R)*(float(iRu + iRr + iRl + iRd)/4))/2**BITS))
-	oG_expected = int(round((iG*G + (2**BITS - G)*(float(iGu + iGr + iGl + iGd)/4))/2**BITS))
-	oB_expected = int(round((iB*B + (2**BITS - B)*(float(iBu + iBr + iBl + iBd)/4))/2**BITS))
+	oR_expected = int(round((iR*R + (2**16 - R)*(float(iRu + iRr + iRl + iRd)/4))/2**16))
+	oG_expected = int(round((iG*G + (2**16 - G)*(float(iGu + iGr + iGl + iGd)/4))/2**16))
+	oB_expected = int(round((iB*B + (2**16 - B)*(float(iBu + iBr + iBl + iBd)/4))/2**16))
 
 
 	if verbose:
@@ -95,7 +95,8 @@ def check_pixel(i, j, verbose):
 		status = False
 
 	if status:
-		print "Output is as expected!\n"
+		if verbose:
+			print "Output is as expected!\n"
 	return status
 
 def check_all():
@@ -108,8 +109,16 @@ def check_all():
 
 	return True
 
+if(len(sys.argv) != 3):
+	print "Usage : python compare.py <input-file> <output-file>"
+	sys.exit()
 
-f = open("input.in")
+try: 
+	f = open(sys.argv[1])
+except:
+	print "Could not open input file!"
+	sys.exit()
+
 in_lines = f.read().split('\n')[:-1]
 f.close()
 
@@ -122,7 +131,12 @@ in_lines = in_lines[3:]
 IPIXELS = [[{'R':0, 'G':0, 'B':0} for j in range(N+2)] for i in range(N+2)]
 fill_pixels(IPIXELS, in_lines)
 
-f = open("output.in")
+try:
+	f = open(sys.argv[2])
+except:
+	print "Could not open input file!"
+	sys.exit()
+
 out_lines = f.read().split('\n')[:-1]
 f.close()
 
