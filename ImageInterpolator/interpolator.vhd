@@ -45,9 +45,9 @@ architecture Behavioral of interpolator is
 --signal b : unsigned (15 downto 0) :=(others=>'0');
 --signal c : unsigned (14 downto 0) :=(others=>'0');
 --signal p : unsigned (10 downto 0) :=(9=>'1',others=>'0');
-signal four : unsigned(2 downto 0) :="100";
-signal pow2_16 : unsigned(16 downto 0) :=(16=>'1',others=>'0');
-signal zero_18 : unsigned(17 downto 0) :=(others=>'0');
+constant four : unsigned(2 downto 0) :="100";
+constant pow2_16 : unsigned(16 downto 0) :=(16=>'1',others=>'0');
+constant zero_18 : unsigned(17 downto 0) :=(others=>'0');
 begin
 
 process(clk)

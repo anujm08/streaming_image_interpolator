@@ -34,11 +34,11 @@ entity controller is
     Port ( clk : in  STD_LOGIC;
            reset : in  STD_LOGIC;
            start : in  STD_LOGIC;
-			  --comp1 : in  STD_LOGIC;
-           --comp2 : in  STD_LOGIC;
-           --comp3 : in  STD_LOGIC;
-			  i : in STD_LOGIC_VECTOR(7 downto 0);
-			  j : in STD_LOGIC_VECTOR(7 downto 0);
+			  comp1 : in  STD_LOGIC;
+           comp2 : in  STD_LOGIC;
+           comp3 : in  STD_LOGIC;
+			  --i : in STD_LOGIC_VECTOR(7 downto 0);
+			  --j : in STD_LOGIC_VECTOR(7 downto 0);
    		  loadABC : out STD_LOGIC:='0';
            load : out  STD_LOGIC:='0';
            update : out  STD_LOGIC:='0';
@@ -77,8 +77,8 @@ begin
 					state <= "0100";
 				end if;
 			when "0100" =>
-				if(i>"0000001") then
-				--if(comp1='1') then -- i>1
+				--if(i>"0000001") then
+				if(comp1='1') then -- i>1
 					state <= "0101";
 					calc <= '1';
 				end if;
@@ -86,14 +86,14 @@ begin
 				state <= "0110";
 				outputReady <= '1';
 			when "0110" =>
-				if(i=size and j = "0000000") then
-				--if(comp2='1') then -- i=99 and j=0
+				--if(i=size and j = "0000000") then
+				if(comp2='1') then -- i=99 and j=0
 					state <= "0111";
 					load <= '0';
 				end if;
 			when "0111" =>
-				if(i>size + 2) then
-				--if(comp2='1') then -- i>101
+				--if(i>size + 2) then
+				if(comp3='1') then -- i>101
 					state <= "1000";
 					calc <= '0';
 				end if;

@@ -35,12 +35,15 @@ entity updateIndex is
 			  reset : in STD_LOGIC;
 			  update : in STD_LOGIC;
 			  i : inout  STD_LOGIC_VECTOR (7 downto 0);
-           j : inout  STD_LOGIC_VECTOR (7 downto 0));
+           j : inout  STD_LOGIC_VECTOR (7 downto 0);
+			  comp1 : out STD_LOGIC;
+			  comp2 : out STD_LOGIC;
+			  comp3 : out STD_LOGIC);
 end updateIndex;
 
 architecture Behavioral of updateIndex is
 signal yinc : STD_LOGIC := '1';
-signal size : STD_LOGIC_VECTOR(7 downto 0) := std_logic_vector(to_unsigned(N-1,8));
+constant size : STD_LOGIC_VECTOR(7 downto 0) := std_logic_vector(to_unsigned(N-1,8));
 begin
 process(clk)
 begin
@@ -48,6 +51,9 @@ begin
 		if(reset = '1') then
 			i <= (others => '0');
 			j <= (others => '0');
+			comp1 <= '0';
+			comp2 <= '0';
+			comp3 <= '0';
 		elsif(update = '1') then
 			if((yinc = '1' AND j = size) OR (yinc = '0' AND j = "0000000")) then
 				yinc <= NOT yinc;
@@ -57,6 +63,13 @@ begin
 			else
 				j <= j - '1';
 			end if;
+			if(i = "00000001" and j = "00000000") then
+				comp1 <= '1';
+			elsif( i = size AND j = "00000001") then
+				comp2 <= '1';
+			elsif( i = size + 2 AND j = "00000000") then
+				comp3  <= '1';
+			end if;	
 		end if;
 	end if;
 end process;

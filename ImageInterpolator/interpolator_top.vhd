@@ -48,11 +48,11 @@ COMPONENT controller is
     Port ( clk : in  STD_LOGIC;
            reset : in  STD_LOGIC;
            start : in  STD_LOGIC;
-			  --comp1 : in  STD_LOGIC;
-           --comp2 : in  STD_LOGIC;
-           --comp3 : in  STD_LOGIC;
-			  i : in STD_LOGIC_VECTOR(7 downto 0);
-			  j : in STD_LOGIC_VECTOR(7 downto 0);
+			  comp1 : in  STD_LOGIC;
+           comp2 : in  STD_LOGIC;
+           comp3 : in  STD_LOGIC;
+			  --i : in STD_LOGIC_VECTOR(7 downto 0);
+			  --j : in STD_LOGIC_VECTOR(7 downto 0);
    		  loadABC : out STD_LOGIC;
            load : out  STD_LOGIC;
            update : out  STD_LOGIC;
@@ -101,7 +101,10 @@ COMPONENT UpdateIndex is
 			  reset : in STD_LOGIC;
 			  update : in STD_LOGIC;
 			  i : inout  STD_LOGIC_VECTOR (7 downto 0);
-           j : inout  STD_LOGIC_VECTOR (7 downto 0));
+           j : inout  STD_LOGIC_VECTOR (7 downto 0);
+			  comp1 : out STD_LOGIC;
+			  comp2 : out STD_LOGIC;
+			  comp3 : out STD_LOGIC);
 END COMPONENT;
 
 COMPONENT writer is
@@ -145,6 +148,10 @@ signal B_d : STD_LOGIC_VECTOR(15 downto 0) := (others =>'0');
 signal B_l : STD_LOGIC_VECTOR(15 downto 0) := (others =>'0');
 signal B_r : STD_LOGIC_VECTOR(15 downto 0) := (others =>'0');
 
+signal comp1: STD_LOGIC := '0';
+signal comp2: STD_LOGIC := '0';
+signal comp3: STD_LOGIC := '0';
+
 begin
 
 ImageController : controller
@@ -152,11 +159,11 @@ ImageController : controller
 		clk => clk,
 		reset => reset,
 		start => start,
-		--comp1 : in  STD_LOGIC;
-		--comp2 : in  STD_LOGIC;
-		--comp3 : in  STD_LOGIC;
-		i => i,
-		j => j,
+		comp1 => comp1,
+		comp2 => comp2,
+		comp3 => comp3,
+		--i => i,
+		--j => j,
 		loadABC => loadABC,
 		load => load,
 		update => update,
@@ -266,7 +273,10 @@ Updateij : UpdateIndex
 		reset => reset,
 		update => update,
 		i => i,
-		j => j
+		j => j,
+		comp1 => comp1,
+		comp2 => comp2,
+		comp3 => comp3
 	);
 	
 writeImage : writer
